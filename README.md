@@ -1,142 +1,67 @@
-# G733_windows_app
+# G733 Companion
 
 [Introduction](#introduction)  
-[Some Reverse...](#some-reverse)  
-[The Software](#The-Software)  
-[How to use "Basic" logitech drivers](#How-to-use-Basic-logitech-drivers)  
+[Instruction](#instruction)  
+[How to use "Basic" logitech drivers](#how-to-use-basic-logitech-drivers)  
+[Acknowledgements](#acknowledgements)
+
+![app](images/app.PNG)
 
 ## Introduction
 
 #### Why ???
 
-Upgrading from a G430 soundcard (which served me well during ... 6++ years !) to a G733 (finally a "big" battery life and light WIRELESS headset) I've been disappointed seeing that Logitech doesn't offer Dolby anymore (Only the DTS X 2.0, which is crap)
-I've looked at ways to get Dolby back, Dolby Access on W10 seems to bring the same functionalities, and even more !
+TL;DR: Because Logitech G HUB is a piece of trash and I needed to get away from it. It's buggy and it sure feels like they never fix any of their bugs.
 
-Well if you already tried this, you know that something weird is going on between Dolby Atmos and Logitech drivers... I don't know what happened between them, I don't even want to know but the result is ... you get NO SOUND once Dolby is enabled. If you disable Dolby, everything comes back to life.
+You can read the original rant by YulCmr on what drove him to make it. And this is my version.
 
-If you have searched a bit for similar issues on internet, you probably ended on some reddit posts suggesting to use the "generic" / "fail safe" driver from Logitech instead of the fancy one. And it works ! If you use this one, Dolby is working great. BUT ! Here's the issue. G-hub is not working anymore... What does this means ? Lights are always cycling ON as soon as the headset is turned on. You CAN'T set your Sidetone value. You CAN'T get your battery level. Well, that's a no for me.
+Long rant time.
 
-I need to be able to turn off the lights as they have a big impact on battery life, + I can see them which is quite disturbing. Can't speak of people wearing glasses, it would drives me crazy to get lights to reflect into them.
+I was super close to just returning this G733 headset. I bought the K/DA variant as it happened to be the only one on sale among the G733s. And since the day I bought it, it has been pain. The hardware is good, it's comfy, it's light weight, and it seems to have pretty good hardware (mic excluded). But it's all ruined by G HUB...
 
-I need to be able to setup the Sidetone. Default value is 0. If I use this headset on 0 I'm going to speak louder and my neighbors are gonna hate me (Well, they might already) On G430 soundcard the driver provided the ability to set this up in windows sound panel, here, forget about it.
+G733 no longer come with Dolby, even though older models did, as the licensing with Logitech seem to have ended. So you are left with only DTS spatial sound, or plain stereo speakers. But you likely aren't buying high-end headset to just have stereo. But it's not just lack of Dolby being an option, G HUB goes out of its way to prevent you from using anything but G HUB to control your spatial sound. It actively disables you from changing it from windows sound settings. That's not great... but it wouldn't be so bad if DTS on G HUB sounded like absolute garbage. Various forums such as Reddit seem to be littered with people complaining about it sounding like they're trapped inside a tin can. I figured DTS can't possibly sound this bad... So I did a bit of manual tweaking, managed to enable DTS from windows and disabling from G HUB. And voila! Sounds great! I tried uninstalling G HUB and enabling either Dolby or DTS from windows as well. Again, it's great. So it turned out it's just G HUB being terrible, it wasn't DTS's fault at all. I still prefer Dolby, and stumbled across YulCmr's version which led me here.
 
-I need to know what's my battery level ! That's important and there is no way to check battery level within the headset itself like other brands. (Well, at least my Sony XM3 does this, very convenient)
+My nightmares with G HUB didn't end there however. I have Logitech's G600 MMO Mouse (gen 1). I like to have ton of profiles for all kinds of applications. I used to use Logitech Gaming Software (LGS) with it. While it wasn't perfect, it worked fine. Everything worked as it should. Then enter... G HUB.
 
-I can't live with DTS X 2.0. Sound is shitty, really, I mean....  Really.
-I can't live with Stereo only. May sound stupid but I use Dolby since 6++ years and it sounds veeeerry good in video games.
+G HUB frankly does not work with my G600. It has so many bugs, it's amazing that they have chosen to scrap LGS in favor of this for this mouse. For example, I like my back/forward buttons on the side so I can press with my thumbs. This is not the default assignment on G600. So out of the many thumb keys, I assigned them to back and forward. I click. Nothing. Tried assigning middle click to one of those buttons. Nothing. Other keyboard key assignments work fine... So, more work around time. I created a sequence macro where if a button is pressed, it simulates a middle click. And it worked! Great, I figured it's annoying, but as long as I can assign everything with macros, I can still use it. I'm sure you can see where this story goes. None of the macros work in certain software like VMWare. Despite the fact that G HUB shouldn't care at all what program I'm running, if I swap to vmware instance, macros stop working for no reason. Even if the macros are set to persistent. Searching online only got me numerous reports of other people having the exact same problems going back as far as 4 years--essentially launch of G HUB. So, figured Logitech is never going to fix any of this. Multi-profile functionality of my mouse is something I have gotten very used to and not something I want to let go.
 
-Update on 11 jan 2021 : Did a lot of tests and comparison between my old headset and the new one (especially between the "old dolby" and dolby atmos with this trick) and this method is nowhere as good as my old headset. At least some games don't support this at all. (Rust for example) It may be related to how the sound peripheral is detected by the game. My old headset is detected as a 7.1 system, which should trigger something in unity (I guess), whereas this method downgrades the headset driver to a stereo headset. It results in NO front/rear separation in these games which kills the immersion.
+Well... so my choices were: 
+- Get a new non-logitech mouse and use G733 with GHUB or
+- use G733 without GHUB, sticking to only the driver and use G600 with LGS.
 
-Final Note : I'm currently thinking about returning my headset. I was motivated to start disassembling drivers and look at "how it works" under the hood as both my headsets use the same driver (and one can use dolby properly) but other things hold me back. There's some static noise happening when you try to play some harmonics together (like very low freq + very high freq). It can be heard in game and while playing songs and is really annoying... Tested on W10, Linux, with logitech "fancy" & "basic" drivers. It seems to be related to how the sound is compressed to be sent over the air and really kills the experience. I highly doubt that it's related to my unit only.
+I initially thought of picking the latter. But... G733's stupid forward facing RGB is distracting. I don't wear glasses and I can still see them. Can't imagine how terrible it would be for people with glasses as it reflects off of them. Now I **had** to turn off RGB but can't do it without GHUB! Go back to GHUB? It's like trying to pick lesser evil.
 
-#### TL;DR
+Circled my way back to YulCmr's amazingly reverse engineered brilliance. And here we are. I haven't ran across any bugs, so had nothing to fix. Just beautified it a little bit. So all the features are as-is. Only visuals, such as the interface and icons have been changed.
 
-G733 without Dolby :
-- Ghub features (Lights, Sidetone, Battery, etc)
-- DTS-X 2.0 or Stereo
-- Good battery life if you turn lights off
+So, this is my solution to my problem of having to deal with G HUB. I will never buy any more Logitech stuff that uses G HUB ever again. 
 
-G733 with Dolby :
-- No Ghub features (Lights, Sidetone, Battery, etc)
-- DOLBY !
-- Poor battery life as you can't turn lights off
+## Instruction
 
-How to get Ghub features + Dolby ? Create a Ghub clone and use "basic" Logitech drivers
+You can download the release [here](https://github.com/grumpyland/G733_Companion/releases)
 
-## Some reverse...
+Just extract the contents of the 7z archive. There's only two files. And run the exe.
 
-#### Lights
+This software does not provide Dolby Atmos by itself. [You'll have to install that from windows store (not free) if you choose to do so](https://apps.microsoft.com/store/detail/dolby-access/9N0866FS04W8). [If you want to use DTS, it is also available from windows store](https://apps.microsoft.com/store/detail/dts-sound-unbound/9PJ0NKL8MCSJ). Though it's paid software normally, it will detect your G733 automatically and license it for free. You can now use windows feature of right clicking sound in tray, spatial sound and selecting any of the flavor you want. I suppose even Windows Sonic is an option.
 
-Raw frames etc have been deleted as they are unnecessary here. But here is how it works (as far as I understand)
-
-20 bytes frames are sent and received from headset
-
-Features are addressed by 2 bytes long IDs :
-- Lights ID :   0x043e
-- Sidetone ID : 0x071e
-- Battery ID write :  0x080e
-- Timeout ID : 0x082e (needs to be implemented and tested)
-
-It appears that the least significant 4 bits are not important. For example, if you want to set lights setting you can use :
-- 0x04a
-- 0x04b
-- 0x04c
-- 0x04d
-- 0x04e
-- 0x04f
-
-It doesn't seem to matter. I've used "e" everywhere as this is what I got from my headset they day I dumped my frames. (But got "f" the previous day)
-
-Start by filling a 20 bytes long buffer with 0x00, then fill the buffer with corresponding informations ( "-" are untouched bytes, leave 0x00)
-
-| Byte | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 |
-|------|---|---|---|---|---|---|---|---|---|---|----|----|----|----|
-| lights off | 0x11 | 0xff | 0x04 | 0x3e | side | - | - | - | - | - | - | - | - | - |
-| fixed lights | 0x11 | 0xff | 0x04 | 0x3e | side | 0x01 | R | G | B | 0x02 | - | - | - | - |
-| breathing lights | 0x11 | 0xff | 0x04 | 0x3e | side | 0x02 | R | G | B | duration_msb | duration_lsb | - | brightness | - |
-| cycling lights | 0x11 | 0xff | 0x04 | 0x3e | side | 0x03 | - | - | - | - | - |duration_msb | duration_lsb | brightness |
-| Sidetone | 0x11 | 0xff | 0x07 | 0x1e | sidetone | - | - | - | - | - | - | - | - | - |
-| Battery (write) | 0x11 | 0xff | 0x08 | 0x0e | - | - | - | - | - | - | - | - | - | - |
-| Battery (read) | 0x11 | 0xff | 0x08 | 0x0e | volt_MSB | volt_LSB | state | - | - | - | - | - | - | - |
-
-Side is one byte :
-- top : 0x01
-- bottom : 0x00
-
-Duration is two bytes long :
-- 1000ms = 0d1000 = 0x03e8 (MSB is 0x03 & LSB is 0xe8)
-- 5000ms = 0d5000 = 0x1388 (MSB is 0x13 & LSB is 0x88)
-- etc
-
-Brightness is one byte long :
-- 100% = 0d100 = 0x64
-- 50% = 0d50 = 0x32
-
-Sidetone is one byte long :
-- 100% = 0d100 = 0x64
-- 50% = 0d50 = 0x32
-
-Colors are RGB value but these are scaled. I used polynomial trendline feature on excel and ended up with this :
-
-scaled_color = -0.0086\*color + 0.0028\*color² + 0.000004*color³
-
-Following this :
-- 0d255 = 0d255 (scaled) = 0xff
-- 0d200 = 0d147 (scaled) = 0x93
-- 0d100 = 0d32 (scaled) = 0x20
-
-Voltage is two bytes long  :
-- 4000mV = 0d4000 = 0x0fa0 (MSB is 0x0f & LSB is 0xa0)
-- 3800mV = 0d3800 = 0x0ed8 (MSB is 0x0e & LSB is 0xd8)
-
-State is one byte long :
-- 0x01 : Unplugged (Discharging)
-- 0x03 : Cable just got inserted (Interrupt frame)
-- 0x07 : Plugged (Charging)
-
-## The software
-
-I made a c# .net windows form app as it's quite easy to work with, and should be compatible with every W10 computer. (+ as an Embedded systems dev, I'm more into C code targeting Arm Cortex-M MCUs)
-
-just open G733_Dolby_Atmos_companion.sln in Visual studio and you're good to go.
-
-Or, you can [download](https://github.com/YulCmr/G733_windows_app/raw/main/G733_Dolby_Atmos_companion/G733_Dolby_Atmos_companion/bin/Release/G733_Dolby_Atmos_companion.exe) the last version and use it. You may face some bugs, but I hope community will help fix these.
-
-![app](images/app.PNG)
-
-Maybe someone with real knowledges in Windows app can make a sexier and more stable app.
+The app should be fairly self-explanatory. Sidetone is the mic volume.
 
 ## How to use "Basic" logitech drivers
+
+**Note:** I did not have to go to use basic driver. But I have kept this portion of the instruction from the original as it may or may not be required for some individuals. 
 
 1. Open your Device Manager
 2. Right click -> Update Driver, on the logitech G733 device in the "Sound, video and game controllers" section, NOT the "Audio inputs and outputs"  
 ![device_man](images/device_manager.PNG)
-3. Clic "Browse my computer for drivers"  
-![driver](images/driver.PNG)
-4.Clic "Let me pick from a list of available drivers on my computer"  
-![driver2](images/driver2.PNG)
-5.Choose "USB Audio Device" instead of the Logitech one
-![driver3](images/driver3.PNG)
+3. Click "Browse my computer for drivers"  
+![driver](images/driver.PNG)  
+4. Click "Let me pick from a list of available drivers on my computer"  
+![driver2](images/driver2.PNG)  
+5. Choose "USB Audio Device" instead of the Logitech one
+![driver3](images/driver3.PNG)  
 6. Restart your computer (That's actually important)
 
 Once you have installed and enabled Dolby Atmos, you may still have NO sound. Do this again WITHOUT restarting, you should be good.
+
+## Acknowledgements
+
+99.99% of the credit goes to YulCmr's original.
