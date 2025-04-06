@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace G733_Dolby_Atmos_companion
+namespace G733_Companion
 {
     static class Program
     {

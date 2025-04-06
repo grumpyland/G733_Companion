@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G733_Dolby_Atmos_companion", "G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion.csproj", "{7836458E-7040-429B-99EF-B0342208EBA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G733_Dolby_Atmos_companion", "G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion.csproj", "{96206F87-E2F9-473D-B59B-42093D992F0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

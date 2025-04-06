@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("G733_Dolby_Atmos_companion")]
+[assembly: AssemblyTitle("G733_Companion")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("G733_Dolby_Atmos_companion")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCompany("Grumpyland")]
+[assembly: AssemblyProduct("G733_Companion")]
+[assembly: AssemblyCopyright("Copyright © 2025 Grumpyland")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
