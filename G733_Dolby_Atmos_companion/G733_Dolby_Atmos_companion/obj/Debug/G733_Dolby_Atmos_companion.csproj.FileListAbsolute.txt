@@ -24,3 +24,16 @@ H:\Users\Yul\Documents\GitHub\G733_windows_app\G733_Dolby_Atmos_companion\G733_D
 H:\Users\Yul\Documents\GitHub\G733_windows_app\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.exe
 H:\Users\Yul\Documents\GitHub\G733_windows_app\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.pdb
 H:\Users\Yul\Documents\GitHub\G733_windows_app\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.csprojAssemblyReference.cache
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\bin\Debug\G733_Dolby_Atmos_companion.exe.config
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\bin\Debug\G733_Dolby_Atmos_companion.exe
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\bin\Debug\G733_Dolby_Atmos_companion.pdb
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\bin\Debug\HidLibrary.dll
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\bin\Debug\HidLibrary.pdb
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.csproj.AssemblyReference.cache
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.Form1.resources
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.Properties.Resources.resources
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.csproj.GenerateResource.cache
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.csproj.CoreCompileInputs.cache
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dol.44D8878E.Up2Date
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.exe
+F:\G733\grumpyland\G733_Dolby_Atmos_companion\G733_Dolby_Atmos_companion\obj\Debug\G733_Dolby_Atmos_companion.pdb

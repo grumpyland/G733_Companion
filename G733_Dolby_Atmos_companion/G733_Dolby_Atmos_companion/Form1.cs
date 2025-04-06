@@ -15,7 +15,7 @@ using System.Drawing.Drawing2D;
 using System.Security.Principal;
 using System.Management;
 
-namespace G733_Dolby_Atmos_companion
+namespace G733_Companion
 {
     public partial class Form1 : Form
     {
@@ -116,7 +116,7 @@ namespace G733_Dolby_Atmos_companion
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonApplySettings_Click(object sender, EventArgs e)
         {
             if (HidDevice != null)
             {
@@ -332,7 +332,7 @@ namespace G733_Dolby_Atmos_companion
             Properties.Settings.Default.Save();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonPickcolor_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
             Console.WriteLine(colorDialog1.Color);
@@ -376,6 +376,7 @@ namespace G733_Dolby_Atmos_companion
         private void battery_level_update_timer_Tick(object sender, EventArgs e)
         {
             battery_level_update();
+            set_lights();
         }
 
         private void battery_level_update()
@@ -523,9 +524,9 @@ namespace G733_Dolby_Atmos_companion
 
         private void notify_percentage()
         { 
-            if(voltage == 0)
+            if (voltage == 0)
             {
-                notifyIcon1.Icon = G733_Dolby_Atmos_companion.Properties.Resources.icon;
+                notifyIcon1.Icon = G733_Companion.Properties.Resources.icon;
                 progressBar1.Value = 0;
                 customProgressBar1.Value = 0;
                 label10.Text = "Approx -- hours";
@@ -533,16 +534,17 @@ namespace G733_Dolby_Atmos_companion
             }
             else
             {   
-                //percent = (int)(3451.853 - 2.885 * voltage + 0.00078188 * voltage * voltage - 0.000000067828 * voltage * voltage * voltage);
-                //percent = (int)(0.2 * voltage - 740);
+                // alternate percentage calculation methods?
+                // percent = (int)(3451.853 - 2.885 * voltage + 0.00078188 * voltage * voltage - 0.000000067828 * voltage * voltage * voltage);
+                // percent = (int)(0.2 * voltage - 740);
                 percent = (int)(0.1667 * voltage - 608.33);
                 if (percent >= 60)
                 {
                     try
                     {
-                        if (is_headset_plugged == true && percent >= 80) notifyIcon1.Icon = G733_Dolby_Atmos_companion.Properties.Resources.green_charging;
-                        else if (is_headset_plugged == true) notifyIcon1.Icon = G733_Dolby_Atmos_companion.Properties.Resources.orange_charging;
-                        else notifyIcon1.Icon = G733_Dolby_Atmos_companion.Properties.Resources.green;
+                        if (is_headset_plugged == true && percent >= 80) notifyIcon1.Icon = G733_Companion.Properties.Resources.green_charging;
+                        else if (is_headset_plugged == true) notifyIcon1.Icon = G733_Companion.Properties.Resources.orange_charging;
+                        else notifyIcon1.Icon = G733_Companion.Properties.Resources.green;
                     }
                     catch
                     {
@@ -553,29 +555,21 @@ namespace G733_Dolby_Atmos_companion
                 {
                     try
                     {
-                        if (is_headset_plugged == true && percent >= 40) notifyIcon1.Icon = G733_Dolby_Atmos_companion.Properties.Resources.orange_charging;
-                        else if (is_headset_plugged == true) notifyIcon1.Icon = G733_Dolby_Atmos_companion.Properties.Resources.red_charging;
-                        else notifyIcon1.Icon = G733_Dolby_Atmos_companion.Properties.Resources.orange;
+                        if (is_headset_plugged == true && percent >= 40) notifyIcon1.Icon = G733_Companion.Properties.Resources.orange_charging;
+                        else if (is_headset_plugged == true) notifyIcon1.Icon = G733_Companion.Properties.Resources.red_charging;
+                        else notifyIcon1.Icon = G733_Companion.Properties.Resources.orange;
                     }
                     catch
                     {
                         Console.WriteLine("Exception catched, icon related. I still don't know what happens....");
                     }
-                    /*canvas.FillEllipse(new SolidBrush(pink), 0, 0, 32, 32);
-                    canvas.DrawString(
-                        percent.ToString(),
-                        new Font("NewTimeRoman", 18, FontStyle.Bold),
-                        new SolidBrush(Color.FromArgb(0, 0, 0)),
-                        new RectangleF(-5, 2, 42, 32),
-                        format
-                    );*/
                 }
                 else
                 {
                     try
                     {
-                        if (is_headset_plugged == true) notifyIcon1.Icon = G733_Dolby_Atmos_companion.Properties.Resources.red_charging;
-                        else notifyIcon1.Icon = G733_Dolby_Atmos_companion.Properties.Resources.red;
+                        if (is_headset_plugged == true) notifyIcon1.Icon = G733_Companion.Properties.Resources.red_charging;
+                        else notifyIcon1.Icon = G733_Companion.Properties.Resources.red;
                     }
                     catch
                     {
@@ -589,17 +583,6 @@ namespace G733_Dolby_Atmos_companion
                 customProgressBar1.Value = Math.Min(percent, 100);
                 label9.Text = Math.Min(percent, 100) + "%";
                 label10.Text = "Approx " + (int)estim + " hours";
-                /*try
-                {
-                    notifyIcon1.Icon = Icon.FromHandle(iconBitmap.GetHicon());
-                    notifyIcon1.Text = voltage + " mV / " + percent + "% / Approx " + (int)estim + " hours";
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("Exception catched, icon related. I still don't know what happens....");
-
-                }*/
 
                 //Something must be wrong with their ADC ref voltage while charging .... I've measured a ~370mV offset while charging
                 if (is_headset_plugged == true && voltage >= 4270)
@@ -663,7 +646,7 @@ namespace G733_Dolby_Atmos_companion
     {
         public CustomProgressBar()
         {
-            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -672,7 +655,7 @@ namespace G733_Dolby_Atmos_companion
             double scaleFactor = (((double)Value - (double)Minimum) / ((double)Maximum - (double)Minimum));
             if (ProgressBarRenderer.IsSupported)
                 ProgressBarRenderer.DrawHorizontalBar(e.Graphics, rec);
-            rec.Width = (int)((rec.Width * scaleFactor)-4);
+            rec.Width = (int)((rec.Width * scaleFactor) - 4);
             if (rec.Width == 0) rec.Width = 1;
             rec.Height -= 4;
             if (rec.Height == 0) rec.Height = 1;

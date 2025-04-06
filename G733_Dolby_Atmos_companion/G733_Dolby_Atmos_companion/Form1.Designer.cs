@@ -1,4 +1,4 @@
-﻿namespace G733_Dolby_Atmos_companion
+﻿namespace G733_Companion
 {
     partial class Form1
     {
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
+            this.applySettings = new System.Windows.Forms.Button();
             this.headset_connected_check = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton_cycling = new System.Windows.Forms.RadioButton();
@@ -46,7 +46,7 @@
             this.radioButton_top = new System.Windows.Forms.RadioButton();
             this.radioButton_both = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.button2 = new System.Windows.Forms.Button();
+            this.pickcolor = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
@@ -66,7 +66,7 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.customProgressBar1 = new G733_Dolby_Atmos_companion.CustomProgressBar();
+            this.customProgressBar1 = new G733_Companion.CustomProgressBar();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_brightness)).BeginInit();
@@ -76,20 +76,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // applySettings
             // 
-            this.button1.Location = new System.Drawing.Point(28, 397);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(203, 24);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Apply light settings";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.applySettings.Location = new System.Drawing.Point(28, 397);
+            this.applySettings.Name = "applySettings";
+            this.applySettings.Size = new System.Drawing.Size(203, 24);
+            this.applySettings.TabIndex = 0;
+            this.applySettings.Text = "Apply light settings";
+            this.applySettings.UseVisualStyleBackColor = true;
+            this.applySettings.Click += new System.EventHandler(this.buttonApplySettings_Click);
             // 
             // headset_connected_check
             // 
             this.headset_connected_check.Enabled = true;
-            this.headset_connected_check.Interval = 750;
+            this.headset_connected_check.Interval = 1000;
             this.headset_connected_check.Tick += new System.EventHandler(this.headset_connected_check_Tick);
             // 
             // groupBox1
@@ -253,15 +253,15 @@
             this.radioButton_both.UseVisualStyleBackColor = true;
             this.radioButton_both.CheckedChanged += new System.EventHandler(this.radioButton_both_CheckedChanged);
             // 
-            // button2
+            // pickcolor
             // 
-            this.button2.Location = new System.Drawing.Point(28, 368);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(156, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Pick a color";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.pickcolor.Location = new System.Drawing.Point(28, 368);
+            this.pickcolor.Name = "pickcolor";
+            this.pickcolor.Size = new System.Drawing.Size(156, 23);
+            this.pickcolor.TabIndex = 7;
+            this.pickcolor.Text = "Pick a color";
+            this.pickcolor.UseVisualStyleBackColor = true;
+            this.pickcolor.Click += new System.EventHandler(this.buttonPickcolor_Click);
             // 
             // pictureBox1
             // 
@@ -387,7 +387,7 @@
             // 
             // HID_read_timer
             // 
-            this.HID_read_timer.Interval = 500;
+            this.HID_read_timer.Interval = 1000;
             this.HID_read_timer.Tick += new System.EventHandler(this.HID_read_timer_Tick);
             // 
             // label11
@@ -467,14 +467,14 @@
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.pickcolor);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.trackBar_brightness);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.applySettings);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -497,7 +497,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button applySettings;
         private System.Windows.Forms.Timer headset_connected_check;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton_breathing;
@@ -513,7 +513,7 @@
         private System.Windows.Forms.RadioButton radioButton_top;
         private System.Windows.Forms.RadioButton radioButton_both;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button pickcolor;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar trackBar2;
