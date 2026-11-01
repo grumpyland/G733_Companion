@@ -45,6 +45,14 @@ namespace G733_Companion
         public Form1()
         {
             InitializeComponent();
+
+            // Settings are stored per app version; carry the previous version's over after an update
+            if (Properties.Settings.Default.settings_upgrade_required)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.settings_upgrade_required = false;
+                Properties.Settings.Default.Save();
+            }
            
             colorDialog1.AllowFullOpen = true;
             notifyIcon1.Visible = true;

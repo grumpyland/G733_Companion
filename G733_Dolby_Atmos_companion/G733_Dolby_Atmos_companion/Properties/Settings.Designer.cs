@@ -238,5 +238,17 @@ namespace G733_Companion.Properties {
                 this["light_zones_initialized"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool settings_upgrade_required {
+            get {
+                return ((bool)(this["settings_upgrade_required"]));
+            }
+            set {
+                this["settings_upgrade_required"] = value;
+            }
+        }
     }
 }
