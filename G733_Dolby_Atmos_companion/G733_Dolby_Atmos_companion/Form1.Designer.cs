@@ -49,22 +49,20 @@
             this.pickcolor = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label_sidetone_info = new System.Windows.Forms.Label();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.battery_level_update_timer = new System.Windows.Forms.Timer(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.HID_read_timer = new System.Windows.Forms.Timer(this.components);
             this.label11 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.timer_of_the_shame = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.customProgressBar1 = new G733_Companion.CustomProgressBar();
             this.groupBox1.SuspendLayout();
@@ -292,7 +290,16 @@
             this.trackBar2.Value = 100;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
             this.trackBar2.ValueChanged += new System.EventHandler(this.trackBar2_ValueChanged);
-            this.trackBar2.MouseCaptureChanged += new System.EventHandler(this.trackBar2_MouseCaptureChanged);
+            // 
+            // label_sidetone_info
+            // 
+            this.label_sidetone_info.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_sidetone_info.ForeColor = System.Drawing.Color.DimGray;
+            this.label_sidetone_info.Location = new System.Drawing.Point(682, 122);
+            this.label_sidetone_info.Name = "label_sidetone_info";
+            this.label_sidetone_info.Size = new System.Drawing.Size(206, 70);
+            this.label_sidetone_info.TabIndex = 24;
+            this.label_sidetone_info.Text = "Plays your own microphone back into the earcups so you can hear yourself while you talk. 0% turns it off. It does not change how loud your mic sounds to others.";
             // 
             // label4
             // 
@@ -349,11 +356,6 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Battery";
             // 
-            // battery_level_update_timer
-            // 
-            this.battery_level_update_timer.Interval = 60000;
-            this.battery_level_update_timer.Tick += new System.EventHandler(this.battery_level_update_timer_Tick);
-            // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(685, 518);
@@ -409,21 +411,12 @@
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
             // 
-            // timer_of_the_shame
-            // 
-            this.timer_of_the_shame.Tick += new System.EventHandler(this.timer_of_the_shame_Tick);
-            // 
             // notifyIcon1
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
             this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // checkBox1
             // 
@@ -465,6 +458,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.trackBar2);
+            this.Controls.Add(this.label_sidetone_info);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pickcolor);
@@ -516,22 +510,20 @@
         private System.Windows.Forms.Button pickcolor;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_sidetone_info;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Timer battery_level_update_timer;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Timer HID_read_timer;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Timer timer_of_the_shame;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private CustomProgressBar customProgressBar1;
         private System.Windows.Forms.CheckBox checkBox1;
     }
