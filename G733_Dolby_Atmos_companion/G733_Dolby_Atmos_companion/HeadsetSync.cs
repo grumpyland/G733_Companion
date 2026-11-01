@@ -31,9 +31,6 @@ namespace G733_Companion
 
         private const byte software_id = 0x0d;
 
-        private const byte zone_bottom = 0x00;
-        private const byte zone_top = 0x01;
-        private const byte zone_both = 0x02;
         private const byte mode_off = 0x00;
         private const byte mode_fixed = 0x01;
         private const byte mode_breathing = 0x02;
@@ -186,11 +183,9 @@ namespace G733_Companion
 
         private bool headset_matches_settings()
         {
-            byte side = Properties.Settings.Default.light_side;
-            byte mode = Properties.Settings.Default.light_mode;
-
-            foreach (byte zone in zones_for(side))
+            foreach (byte zone in LightZones.all)
             {
+                byte mode = LightZones.GetMode(zone);
                 byte[] reply = request(feature_led, fn_led_get_zone_effect, zone);
                 if (reply == null) return false;
                 if (reply[4] != zone || reply[5] != mode)
@@ -210,27 +205,33 @@ namespace G733_Companion
             return true;
         }
 
-        private static byte[] zones_for(byte side)
-        {
-            if (side == zone_both) return new byte[] { zone_bottom, zone_top };
-            return new byte[] { side };
-        }
-
         private bool set_lights()
         {
-            byte side = Properties.Settings.Default.light_side;
-            byte mode = Properties.Settings.Default.light_mode;
-            byte duration_msb = (byte)((Properties.Settings.Default.light_duration & 0xff00) >> 8);
-            byte duration_lsb = (byte)(Properties.Settings.Default.light_duration & 0xff);
-            byte brightness = Properties.Settings.Default.light_brightness;
+            bool ok = true;
+            foreach (byte zone in LightZones.all)
+            {
+                ok &= set_zone_light(zone);
+            }
+            return ok;
+        }
+
+        private bool set_zone_light(byte zone)
+        {
+            byte mode = LightZones.GetMode(zone);
+            int duration = LightZones.GetDuration(zone);
+            byte duration_msb = (byte)((duration & 0xff00) >> 8);
+            byte duration_lsb = (byte)(duration & 0xff);
+            byte brightness = LightZones.GetBrightness(zone);
 
             // Gamma-ish correction so the LEDs look like the picked color
-            byte r = correct_color(Properties.Settings.Default.color_R);
-            byte g = correct_color(Properties.Settings.Default.color_G);
-            byte b = correct_color(Properties.Settings.Default.color_B);
+            System.Drawing.Color color = LightZones.GetColor(zone);
+            byte r = correct_color(color.R);
+            byte g = correct_color(color.G);
+            byte b = correct_color(color.B);
 
             // args[0] = zone, args[1] = effect, rest = effect parameters (frame bytes 4..)
             byte[] args = new byte[12];
+            args[0] = zone;
             args[1] = mode;
 
             switch (mode)
@@ -254,15 +255,9 @@ namespace G733_Companion
                     return true;
             }
 
-            bool ok = true;
-            foreach (byte zone in zones_for(side))
-            {
-                args[0] = zone;
-                bool sent = request(feature_led, fn_led_set_zone_effect, args) != null;
-                Console.WriteLine("Light zone " + zone + " mode " + mode + " applied: " + sent);
-                ok &= sent;
-            }
-            return ok;
+            bool sent = request(feature_led, fn_led_set_zone_effect, args) != null;
+            Console.WriteLine("Light zone " + zone + " mode " + mode + " applied: " + sent);
+            return sent;
         }
 
         private static byte correct_color(int c)

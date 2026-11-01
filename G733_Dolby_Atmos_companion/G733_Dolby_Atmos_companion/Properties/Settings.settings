@@ -29,5 +29,32 @@
     <Setting Name="startup_launch" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="top_light_mode" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="top_color" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">16711680</Value>
+    </Setting>
+    <Setting Name="top_light_duration" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="top_light_brightness" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="bottom_light_mode" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="bottom_color" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">16711680</Value>
+    </Setting>
+    <Setting Name="bottom_light_duration" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5000</Value>
+    </Setting>
+    <Setting Name="bottom_light_brightness" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="light_zones_initialized" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

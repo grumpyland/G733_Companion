@@ -28,6 +28,7 @@ namespace G733_Companion
         private const byte fix = 0x01;
         private const byte breathing = 0x02;
         private const byte cycling = 0x03;
+        private bool loading_controls = false;
 
         private int voltage = 0;
         private bool is_headset_plugged = false;
@@ -46,39 +47,20 @@ namespace G733_Companion
             InitializeComponent();
            
             colorDialog1.AllowFullOpen = true;
-            pictureBox1.BackColor = colorDialog1.Color;
             notifyIcon1.Visible = true;
             notifyIcon1.Text = "Disconnected";
 
-            label1.Text = trackBar1.Value.ToString() + " ms";
-            label2.Text = trackBar_brightness.Value.ToString() + " %";
             label6.Text = trackBar2.Value.ToString() + " %";
             label11.Text = "";
 
-            trackBar1.Value = Properties.Settings.Default.light_duration;
             trackBar2.Value = Properties.Settings.Default.sidetone;
-            trackBar_brightness.Value = Properties.Settings.Default.light_brightness;
 
             checkBox1.Checked = Properties.Settings.Default.startup_launch;
 
-            Color backup = Color.FromArgb(Properties.Settings.Default.color_R, Properties.Settings.Default.color_G, Properties.Settings.Default.color_B);
-
-            pictureBox1.BackColor = backup;
-
             progressBar1.Visible = false;
 
-            switch (Properties.Settings.Default.light_mode)
-            {
-                case off: radioButton_off.Checked = true;
-                    break;
-                case fix: radioButton_fixed.Checked = true;
-                    break;
-                case breathing: radioButton_breathing.Checked = true;
-                    break;
-                case cycling: radioButton_cycling.Checked = true;
-                    break;
-                default: break;
-            }
+            LightZones.Migrate();
+            loading_controls = true;
             switch (Properties.Settings.Default.light_side)
             {
                 case both: radioButton_both.Checked = true;
@@ -89,6 +71,7 @@ namespace G733_Companion
                     break;
                 default: break;
             }
+            load_side_values();
 
             canvas = Graphics.FromImage(iconBitmap);
             format.Alignment = StringAlignment.Center;
@@ -148,58 +131,94 @@ namespace G733_Companion
 
         private void radioButton_fixed_CheckedChanged(object sender, EventArgs e)
         {
-            if (!radioButton_fixed.Checked) return;
-            Properties.Settings.Default.light_mode = fix;
-            Properties.Settings.Default.Save();
-            headset.RequestApply();
+            if (radioButton_fixed.Checked) set_mode(fix);
         }
 
         private void radioButton_breathing_CheckedChanged(object sender, EventArgs e)
         {
-            if (!radioButton_breathing.Checked) return;
-            Properties.Settings.Default.light_mode = breathing;
-            Properties.Settings.Default.Save();
-            headset.RequestApply();
+            if (radioButton_breathing.Checked) set_mode(breathing);
         }
 
         private void radioButton_cycling_CheckedChanged(object sender, EventArgs e)
         {
-            if (!radioButton_cycling.Checked) return;
-            Properties.Settings.Default.light_mode = cycling;
-            Properties.Settings.Default.Save();
-            headset.RequestApply();
+            if (radioButton_cycling.Checked) set_mode(cycling);
         }
 
         private void radioButton_off_CheckedChanged(object sender, EventArgs e)
         {
-            if (!radioButton_off.Checked) return;
-            Properties.Settings.Default.light_mode = off;
-            Properties.Settings.Default.Save();
-            headset.RequestApply();
+            if (radioButton_off.Checked) set_mode(off);
         }
 
         private void radioButton_both_CheckedChanged(object sender, EventArgs e)
         {
-            if (!radioButton_both.Checked) return;
-            Properties.Settings.Default.light_side = both;
-            Properties.Settings.Default.Save();
-            headset.RequestApply();
+            if (radioButton_both.Checked) set_side(both);
         }
 
         private void radioButton_top_CheckedChanged(object sender, EventArgs e)
         {
-            if (!radioButton_top.Checked) return;
-            Properties.Settings.Default.light_side = top;
-            Properties.Settings.Default.Save();
-            headset.RequestApply();
+            if (radioButton_top.Checked) set_side(top);
         }
 
         private void radioButton_down_CheckedChanged(object sender, EventArgs e)
         {
-            if (!radioButton_down.Checked) return;
-            Properties.Settings.Default.light_side = bottom;
+            if (radioButton_down.Checked) set_side(bottom);
+        }
+
+        // Zones the light controls currently edit
+        private byte[] selected_zones()
+        {
+            return LightZones.Selected(Properties.Settings.Default.light_side);
+        }
+
+        private void set_mode(byte mode)
+        {
+            if (loading_controls) return;
+            foreach (byte zone in selected_zones()) LightZones.SetMode(zone, mode);
             Properties.Settings.Default.Save();
             headset.RequestApply();
+        }
+
+        private void set_side(byte side)
+        {
+            if (loading_controls) return;
+            Properties.Settings.Default.light_side = side;
+            Properties.Settings.Default.Save();
+            load_side_values();
+        }
+
+        // Shows the selected side's light settings. With both sides selected, a control is left
+        // blank when top and bottom differ; changing it then applies to both.
+        private void load_side_values()
+        {
+            byte[] zones = selected_zones();
+            loading_controls = true;
+
+            RadioButton[] mode_buttons = { radioButton_off, radioButton_fixed, radioButton_breathing, radioButton_cycling };
+            bool same_mode = LightZones.Same(zones, LightZones.GetMode, out byte mode);
+            for (int i = 0; i < mode_buttons.Length; i++)
+            {
+                mode_buttons[i].Checked = same_mode && mode == i;
+            }
+
+            if (LightZones.Same(zones, LightZones.GetColor, out Color color))
+            {
+                pictureBox1.BackColor = color;
+                colorDialog1.Color = color;
+            }
+            else
+            {
+                pictureBox1.BackColor = SystemColors.Control;
+            }
+
+            bool same_duration = LightZones.Same(zones, LightZones.GetDuration, out int duration);
+            trackBar1.Value = Math.Max(trackBar1.Minimum, Math.Min(trackBar1.Maximum, duration));
+            label1.Text = same_duration ? duration + " ms" : "--";
+
+            bool same_brightness = LightZones.Same(zones, LightZones.GetBrightness, out byte brightness);
+            trackBar_brightness.Value = Math.Max(trackBar_brightness.Minimum, Math.Min(trackBar_brightness.Maximum, (int)brightness));
+            label2.Text = same_brightness ? brightness + " %" : "--";
+
+            loading_controls = false;
         }
 
         private void buttonPickcolor_Click(object sender, EventArgs e)
@@ -207,9 +226,7 @@ namespace G733_Companion
             if (colorDialog1.ShowDialog() != DialogResult.OK) return;
             Console.WriteLine(colorDialog1.Color);
             pictureBox1.BackColor = colorDialog1.Color;
-            Properties.Settings.Default.color_R = colorDialog1.Color.R;
-            Properties.Settings.Default.color_G = colorDialog1.Color.G;
-            Properties.Settings.Default.color_B = colorDialog1.Color.B;
+            foreach (byte zone in selected_zones()) LightZones.SetColor(zone, colorDialog1.Color);
             Properties.Settings.Default.Save();
             headset.RequestApply();
         }
@@ -285,16 +302,18 @@ namespace G733_Companion
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
+            if (loading_controls) return;
             label1.Text = trackBar1.Value.ToString() + " ms";
-            Properties.Settings.Default.light_duration = trackBar1.Value;
+            foreach (byte zone in selected_zones()) LightZones.SetDuration(zone, trackBar1.Value);
             Properties.Settings.Default.Save();
             headset.RequestApply();
         }
 
         private void trackBar_brightness_ValueChanged(object sender, EventArgs e)
         {
+            if (loading_controls) return;
             label2.Text = trackBar_brightness.Value.ToString() + " %";
-            Properties.Settings.Default.light_brightness = (byte)trackBar_brightness.Value;
+            foreach (byte zone in selected_zones()) LightZones.SetBrightness(zone, (byte)trackBar_brightness.Value);
             Properties.Settings.Default.Save();
             headset.RequestApply();
         }

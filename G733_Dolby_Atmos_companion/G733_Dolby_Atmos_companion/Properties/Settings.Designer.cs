@@ -130,5 +130,113 @@ namespace G733_Companion.Properties {
                 this["startup_launch"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte top_light_mode {
+            get {
+                return ((byte)(this["top_light_mode"]));
+            }
+            set {
+                this["top_light_mode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("16711680")]
+        public int top_color {
+            get {
+                return ((int)(this["top_color"]));
+            }
+            set {
+                this["top_color"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        public int top_light_duration {
+            get {
+                return ((int)(this["top_light_duration"]));
+            }
+            set {
+                this["top_light_duration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public byte top_light_brightness {
+            get {
+                return ((byte)(this["top_light_brightness"]));
+            }
+            set {
+                this["top_light_brightness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte bottom_light_mode {
+            get {
+                return ((byte)(this["bottom_light_mode"]));
+            }
+            set {
+                this["bottom_light_mode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("16711680")]
+        public int bottom_color {
+            get {
+                return ((int)(this["bottom_color"]));
+            }
+            set {
+                this["bottom_color"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
+        public int bottom_light_duration {
+            get {
+                return ((int)(this["bottom_light_duration"]));
+            }
+            set {
+                this["bottom_light_duration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public byte bottom_light_brightness {
+            get {
+                return ((byte)(this["bottom_light_brightness"]));
+            }
+            set {
+                this["bottom_light_brightness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool light_zones_initialized {
+            get {
+                return ((bool)(this["light_zones_initialized"]));
+            }
+            set {
+                this["light_zones_initialized"] = value;
+            }
+        }
     }
 }

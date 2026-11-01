@@ -97,10 +97,10 @@
             this.groupBox1.Controls.Add(this.radioButton_fixed);
             this.groupBox1.Controls.Add(this.radioButton_off);
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
-            this.groupBox1.Location = new System.Drawing.Point(26, 74);
+            this.groupBox1.Location = new System.Drawing.Point(138, 74);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(106, 118);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Light Mode";
             // 
@@ -208,10 +208,10 @@
             this.groupBox2.Controls.Add(this.radioButton_both);
             this.groupBox2.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
-            this.groupBox2.Location = new System.Drawing.Point(138, 74);
+            this.groupBox2.Location = new System.Drawing.Point(26, 74);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(107, 118);
-            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Light side to apply";
             // 
