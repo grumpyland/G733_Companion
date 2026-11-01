@@ -1,7 +1,25 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+# Visual Studio state
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-/G733_Dolby_Atmos_companion/.vs
-/G733_Dolby_Atmos_companion/G733_Dolby_Atmos_companion/.vs
-/.vs
+# Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+publish/
+*.pdb
+
+# NuGet packages (restored from packages.config)
+packages/
+*.nupkg
+
+# OS / editor clutter
+Thumbs.db
+Desktop.ini
+.DS_Store
