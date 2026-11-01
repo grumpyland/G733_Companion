@@ -43,7 +43,7 @@ Just extract the contents of the 7z archive. There's only two files. And run the
 
 This software does not provide Dolby Atmos by itself. [You'll have to install that from windows store (not free) if you choose to do so](https://apps.microsoft.com/store/detail/dolby-access/9N0866FS04W8). [If you want to use DTS, it is also available from windows store](https://apps.microsoft.com/store/detail/dts-sound-unbound/9PJ0NKL8MCSJ). Though it's paid software normally, it will detect your G733 automatically and license it for free. You can now use windows feature of right clicking sound in tray, spatial sound and selecting any of the flavor you want. I suppose even Windows Sonic is an option.
 
-The app should be fairly self-explanatory. Sidetone is the mic volume.
+The app should be fairly self-explanatory. Sidetone plays your own microphone back into the earcups so you can hear yourself while you talk, like on a phone call. Without it, your voice sounds muffled through closed headphones and you tend to talk louder than you need to. 0% turns it off. It does not change how loud your mic sounds to other people.
 
 ## How to use "Basic" logitech drivers
 
