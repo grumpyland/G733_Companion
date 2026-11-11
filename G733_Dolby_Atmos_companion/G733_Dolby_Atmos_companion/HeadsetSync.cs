@@ -319,14 +319,21 @@ namespace G733_Companion
         private bool open_device()
         {
             HidDevice found = null;
-            foreach (HidDevice candidate in HidDevices.Enumerate(0x046d, 0x0ab5))
+            // The original receiver uses PID 0x0AB5. Newer G733 receivers may enumerate as 0x0B1F.
+            // Select the HID++ long-report collection (20-byte input and output reports).
+            ushort[] receiver_pids = { 0x0ab5, 0x0b1f };
+            foreach (ushort pid in receiver_pids)
             {
-                // The HID++ long-report collection is the one with 20 byte reports
-                if (candidate.Capabilities.OutputReportByteLength == 20 && candidate.Capabilities.InputReportByteLength == 20)
+                foreach (HidDevice candidate in HidDevices.Enumerate(0x046d, pid))
                 {
-                    found = candidate;
-                    break;
+                    if (candidate.Capabilities.OutputReportByteLength == 20 &&
+                        candidate.Capabilities.InputReportByteLength == 20)
+                    {
+                        found = candidate;
+                        break;
+                    }
                 }
+                if (found != null) break;
             }
             if (found == null) return false;
 
