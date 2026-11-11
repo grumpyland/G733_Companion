@@ -45,6 +45,7 @@ namespace G733_Companion
         public Form1()
         {
             InitializeComponent();
+            ConfigureResponsiveLayout();
 
             // Settings are stored per app version; carry the previous version's over after an update
             if (Properties.Settings.Default.settings_upgrade_required)
@@ -95,6 +96,30 @@ namespace G733_Companion
 
             this.WindowState = FormWindowState.Minimized;
             this.ShowInTaskbar = false;
+        }
+
+
+        // Keep the two-column layout usable when the window is resized.
+        private void ConfigureResponsiveLayout()
+        {
+            this.MinimumSize = new Size(928, 632);
+
+            // Controls in the right column follow the right edge.
+            Control[] rightTop = {
+                label3, trackBar2, label6, label_sidetone_info, checkBox1
+            };
+            foreach (Control control in rightTop)
+                control.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+
+            // Battery information follows the bottom-right corner.
+            Control[] rightBottom = {
+                label8, label11, customProgressBar1, progressBar1, label10
+            };
+            foreach (Control control in rightBottom)
+                control.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+            label9.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            pictureBox2.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
         }
 
         private void TrayMenuContext()
